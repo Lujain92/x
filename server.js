@@ -11,21 +11,26 @@ server.use(cors())
 
 server.get('/weather',(req,res)=>{
     console.log(req.query)
-    // const result =dataWeather.map(item=>{
-        
-    //     // item.city_name
-    //     // item.lat
-    //     // item.lon
-
-    // }
-    //     )
-}
-
-)
+    let nameCity=dataWeather.find(city=>{
+        if (req.query.city_name===city.city_name){
+            let arrDate=city.data.reduce((acc,date)=>{
+                acc['date']=date.valid_date
+                acc['description']=date.weather.description
+                return acc
 
 
+            }
+            
+            ,{})
+            return arrDate
+        }
 
 
+
+
+    })
+    res.send(nameCity)
+})
 
 
 
