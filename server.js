@@ -9,6 +9,14 @@ const PORT=process.env.PORT;
 server.use(cors())
 //http:localhost:3000/weather?lat=latvalue & lon=lonvalue & searchQuery=cityname
 
+
+server.get('/weather', (req,res)=>{
+    console.log("hello")
+    res.send("hiiii")
+}
+
+
+)
 server.get('/weather',(req,res)=>{
     console.log(req.query)
     let nameCity=dataWeather.find(city=>{
