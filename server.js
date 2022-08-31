@@ -17,37 +17,38 @@ server.get('/test',(req,res) => {
     console.log("test route");
     res.send('Hi from the test roure');
 })
-// let  weatherHandler = (req,res)=>{
-//     console.log(req.query.name)
-//     res.send("hii")
-// }
+
 server.get('/weather',weatherHandler)
 
 
  function weatherHandler  (req,res){
-    console.log(req.query.nameC)
+    let x=req.query.nameC
     res.send("hii")
-    let nameCity=dataWeather.find(city=>{
-        if (req.query.nameC===city.city_name){
-            let arrDate=city.data.reduce((acc,date)=>{
-            acc['date']=date.valid_date
-             acc['description']=date.weather.description
-                return acc
+    let nameCity=dataWeather.find(city=>
+        {
+            if(x.toLowerCase()==city.city_name.toLowerCase()){
+                return city.timezone
+            }
+           
+        }
 
-        },{})
-        return arrDate
+    )
+    res.send(nameCity)
 
-    }
-       
 
- } )
+//     let dataArr=dataWeather.map(item=>{
+//         return new dataWeather(item)
+
+//     }
+
+//     )
 
  
 }
 
 // class DataW {
-//     constructor(){
-//         this.
+//     constructor(item){
+//         this.c
 //     }
 // }
 
